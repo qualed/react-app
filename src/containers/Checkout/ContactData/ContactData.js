@@ -82,8 +82,8 @@ class ContactData extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: 'fastest', displayValue: 'Fastest'},
-                        {value: 'cheapest', displayValue: 'Cheapest'}
+                        { value: 'fastest', displayValue: 'Fastest' },
+                        { value: 'cheapest', displayValue: 'Cheapest' }
                     ]
                 },
                 value: 'fastest',
@@ -97,49 +97,49 @@ class ContactData extends Component {
     orderHandler = (ev) => {
         ev.preventDefault();
         const formData = {};
-        for(let formElementIdentifier in this.state.orderForm) {
+        for (let formElementIdentifier in this.state.orderForm) {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
         const order = {
             ingredients: this.props.ings,
             price: this.props.price,
-            orderData: formData 
+            orderData: formData
         };
         this.props.onOrderBurger(order)
     }
 
     checkValidity = (value, rules) => {
         let isValid = true;
-        if(rules.required) {
+        if (rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
-        if(rules.minLength) {
+        if (rules.minLength) {
             isValid = value.length >= rules.minLength && isValid;
         }
-        if(rules.maxLength) {
+        if (rules.maxLength) {
             isValid = value.length <= rules.minLength && isValid;
         }
         return isValid;
     }
 
     inputValueHandler = (event, inputIdentifier) => {
-        const updatedOrderForm = {...this.state.orderForm};
-        const updatedFormElement = {...updatedOrderForm[inputIdentifier]};
+        const updatedOrderForm = { ...this.state.orderForm };
+        const updatedFormElement = { ...updatedOrderForm[inputIdentifier] };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
         let formIsValid = true;
-        for(let formElement in updatedOrderForm) {
+        for (let formElement in updatedOrderForm) {
             formIsValid = updatedOrderForm[formElement].valid && formIsValid;
         }
-        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
+        this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
     }
 
     render() {
         let orderFormElements = [];
-        for(let key in this.state.orderForm) {
+        for (let key in this.state.orderForm) {
             orderFormElements.push({
                 id: key,
                 config: this.state.orderForm[key]
@@ -148,7 +148,7 @@ class ContactData extends Component {
         let form = (
             <form>
                 {orderFormElements.map(element => (
-                    <Input 
+                    <Input
                         key={element.id}
                         elementType={element.config.elementType}
                         elementConfig={element.config.elementConfig}
@@ -156,13 +156,13 @@ class ContactData extends Component {
                         changed={event => this.inputValueHandler(event, element.id)}
                         invalid={!element.config.valid}
                         touched={element.config.touched}
-                        shouldValidate={element.config.validation} />  
+                        shouldValidate={element.config.validation} />
                 ))}
-                <Button 
-                    btnType="Success" 
+                <Button
+                    btnType="Success"
                     clicked={this.orderHandler}
                     disabled={!this.state.formIsValid}>
-                        ORDER
+                    ORDER
                 </Button>
             </form>
         );

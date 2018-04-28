@@ -38,6 +38,7 @@ class BurgerBuilder extends Component {
     }
 
     acceptPurchase = () => {
+        this.props.onPurchaseInit();
         this.props.history.push('/checkout');
     }
 
@@ -70,7 +71,7 @@ class BurgerBuilder extends Component {
                 cancelPurchase={this.modalClose}
                 acceptPurchase={this.acceptPurchase} />;
         }
-        
+
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClose={this.modalClose}>
@@ -94,7 +95,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
-        onIngredientInit: () => dispatch(actions.initIngredients())
+        onIngredientInit: () => dispatch(actions.initIngredients()),
+        onPurchaseInit: () => dispatch(actions.purchaseInit())
     }
 }
 

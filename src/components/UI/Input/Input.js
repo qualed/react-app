@@ -4,29 +4,29 @@ import classes from './Input.css';
 const input = (props) => {
     let inputElement = null;
     let classesInput = [classes.InputElement];
-    if(props.invalid && props.shouldValidate && props.touched) {
+    if (props.invalid && props.shouldValidate && props.touched) {
         classesInput.push(classes.Invalid);
     }
 
     switch (props.elementType) {
         case ('input'):
-            inputElement = <input 
-                className={classesInput.join(' ')} 
+            inputElement = <input
+                className={classesInput.join(' ')}
                 {...props.elementConfig}
-                value={props.value} 
+                value={props.value}
                 onChange={props.changed} />;
             break;
         case ('textarea'):
-            inputElement = <textarea 
-                className={classesInput.join(' ')} 
+            inputElement = <textarea
+                className={classesInput.join(' ')}
                 {...props.elementConfig}
-                value={props.value} 
+                value={props.value}
                 onChange={props.changed} />;
             break;
         case ('select'):
             inputElement = (
-                <select 
-                    className={classesInput.join(' ')} 
+                <select
+                    className={classesInput.join(' ')}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -35,13 +35,13 @@ const input = (props) => {
                         </option>
                     ))}
                 </select>
-            );  
-            break;  
+            );
+            break;
         default:
-            inputElement = <input 
-                className={classesInput.join(' ')} 
+            inputElement = <input
+                className={classesInput.join(' ')}
                 {...props.elementConfig}
-                value={props.value} 
+                value={props.value}
                 onChange={props.changed} />;
     }
 

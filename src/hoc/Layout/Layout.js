@@ -10,20 +10,20 @@ class Layout extends Component {
     }
 
     closeSideDrawer = () => {
-        this.setState({show: false});
+        this.setState({ show: false });
     }
 
     menuHandler = () => {
         this.setState((prevState) => {
-            return {show: !prevState.show};
+            return { show: !prevState.show };
         });
     }
 
     render() {
-        return(
+        return (
             <Aux>
-                <Toolbar menuHandler={this.menuHandler}/>
-                <SideDrawer show={this.state.show} closed={this.closeSideDrawer}/>
+                <Toolbar menuHandler={this.menuHandler} />
+                <SideDrawer show={this.state.show} closed={this.closeSideDrawer} />
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>
@@ -31,5 +31,5 @@ class Layout extends Component {
         );
     }
 }
-    
+
 export default Layout;

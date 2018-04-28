@@ -5,17 +5,16 @@ import PropTypes from 'prop-types';
 class BurgerIngredient extends Component {
     render() {
         let ingredient = null;
-
         switch (this.props.type) {
-            case ('bread-bottom'): 
+            case ('bread-bottom'):
                 ingredient = <div className={classes.BreadBottom}></div>;
                 break;
             case ('bread-top'):
-                ingredient = ( 
+                ingredient = (
                     <div className={classes.BreadTop}>
                         <div className={classes.Seeds1}></div>
                         <div className={classes.Seeds2}></div>
-                    </div> 
+                    </div>
                 );
                 break;
             case ('meat'):
@@ -23,17 +22,16 @@ class BurgerIngredient extends Component {
                 break;
             case ('cheese'):
                 ingredient = <div className={classes.Cheese}></div>;
-                break; 
+                break;
             case ('salad'):
                 ingredient = <div className={classes.Salad}></div>;
-                break;   
+                break;
             case ('bacon'):
                 ingredient = <div className={classes.Bacon}></div>;
                 break;
-            default: 
-                ingredient = null;    
+            default:
+                ingredient = null;
         }
-
         return ingredient;
     }
 }

@@ -7,13 +7,13 @@ import Aux from '../../../hoc/Auxiliary/Auxiliary';
 
 const sideDrawer = (props) => {
     let sideClasses = [classes.SideDrawer, classes.Close];
-    if(props.show) {
+    if (props.show) {
         sideClasses = [classes.SideDrawer, classes.Open];
     }
 
     return (
         <Aux>
-            <Backdrop show={props.show} clicked={props.closed}/>
+            <Backdrop show={props.show} clicked={props.closed} />
             <div className={sideClasses.join(' ')}>
                 <div className={classes.Logo}>
                     <Logo />
